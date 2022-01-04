@@ -1,6 +1,5 @@
 package com.darktornado.vocaloidmusic
 
-import android.R
 import android.app.Activity
 import android.os.Bundle
 import android.widget.*
@@ -21,7 +20,7 @@ class MainActivity : Activity() {
         }
 
         val list = ListView(this)
-        list.adapter = ArrayAdapter<Any?>(this, R.layout.simple_list_item_1, names)
+        list.adapter = ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_1, names)
         list.isFastScrollEnabled = true
         list.onItemClickListener = OnItemClickListener { parent, view, pos, id ->
             Toast.makeText(this, songs[pos]!!.title, 1).show()
