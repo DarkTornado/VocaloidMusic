@@ -48,6 +48,7 @@ class MainActivity : Activity() {
             Arrays.sort(result)
             return result
         } catch (e: Exception) {
+            Toast.makeText(this, e.toString(), 1).show()
         }
         return null
     }
