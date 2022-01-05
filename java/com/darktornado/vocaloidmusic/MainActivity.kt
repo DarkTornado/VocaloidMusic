@@ -25,6 +25,7 @@ class MainActivity : Activity() {
         list.onItemClickListener = OnItemClickListener { parent, view, pos, id ->
             Toast.makeText(this, songs[pos]!!.title, 1).show()
         }
+        layout.addView(list)
 
         setContentView(layout)
     }
