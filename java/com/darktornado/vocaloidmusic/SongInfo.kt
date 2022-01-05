@@ -8,7 +8,7 @@ class SongInfo (input: String) {
     val prod: String
 
     init {
-        val data = input.split("    ")
+        val data = input.split("::")
         ky = data[0]
         tj = data[1]
         title = data[2]
