@@ -29,23 +29,18 @@ class MainActivity : Activity() {
         setContentView(layout)
     }
 
-    private fun getSongArray(): Array<SongInfo?>? {
+    private fun getSongArray(): ArrayList<SongInfo>? {
         try {
+            val result = ArrayList<SongInfo>()
             val isr = InputStreamReader(assets.open("songs.csv"))
             val br = BufferedReader(isr)
-            var str = br.readLine()
-            var line = ""
-            while (br.readLine().also { line = it } != null) {
-                str += "\n$line"
+            var line = br.readLine()
+            while (line != null) {
+                result.add(SongInfo(line))
+                line = br.readLine()
             }
             isr.close()
             br.close()
-            val cache = str.split("\n").toTypedArray()
-            val result = arrayOfNulls<SongInfo>(cache.size)
-            for (n in cache.indices) {
-                result[n] = SongInfo(cache[n])
-            }
-            Arrays.sort(result)
             return result
         } catch (e: Exception) {
             Toast.makeText(this, e.toString(), 1).show()
