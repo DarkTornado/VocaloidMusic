@@ -6,7 +6,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
