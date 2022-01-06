@@ -27,6 +27,9 @@ class MainActivity : Activity() {
         }
         layout.addView(list)
 
+        val pad = dip2px(16)
+        layout.setPadding(pad, pad, pad, pad);
+
         setContentView(layout)
     }
 
@@ -48,5 +51,7 @@ class MainActivity : Activity() {
         }
         return null
     }
+
+    fun dip2px(dips: Int) = Math.ceil((dips * this.resources.displayMetrics.density).toDouble()).toInt()
 
 }
