@@ -19,6 +19,10 @@ class MainActivity : Activity() {
             names[n] = songs[n]!!.title
         }
 
+        val txt = EditText(this)
+        txt.hint = "검색어 입력..."
+        layout.addView(txt)
+
         val list = ListView(this)
         list.adapter = ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_1, names)
         list.isFastScrollEnabled = true
