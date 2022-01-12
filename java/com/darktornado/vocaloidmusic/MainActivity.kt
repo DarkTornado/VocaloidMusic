@@ -1,6 +1,7 @@
 package com.darktornado.vocaloidmusic
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -38,7 +39,7 @@ class MainActivity : Activity() {
                     break
                 }
             }
-            Toast.makeText(this, songs[index]!!.title, 1).show()
+            showDialog(songs[index])
         }
         layout.addView(list)
 
@@ -76,6 +77,14 @@ class MainActivity : Activity() {
             Toast.makeText(this, e.toString(), 1).show()
         }
         return null
+    }
+
+    private fun showDialog(info: SongInfo) {
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle(info.title)
+        dialog.setMessage("금영 : ${info.ky}\n태진 : ${info.ky}")
+        dialog.setNegativeButton("닫기", null)
+        dialog.show()
     }
 
     fun dip2px(dips: Int) = Math.ceil((dips * this.resources.displayMetrics.density).toDouble()).toInt()
