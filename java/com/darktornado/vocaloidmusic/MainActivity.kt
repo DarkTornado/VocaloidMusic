@@ -82,7 +82,8 @@ class MainActivity : Activity() {
     private fun showDialog(info: SongInfo) {
         val dialog = AlertDialog.Builder(this)
         dialog.setTitle(info.title)
-        dialog.setMessage("금영 : ${info.ky}\n태진 : ${info.tj}")
+        dialog.setMessage("금영 : ${info.ky}\n태진 : ${info.tj}" +
+                "\n보컬 : ${info.vocal}\n프로듀서${info.prod}")
         dialog.setNegativeButton("닫기", null)
         dialog.show()
     }
