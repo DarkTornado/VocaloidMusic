@@ -30,7 +30,15 @@ class MainActivity : Activity() {
         list.isFastScrollEnabled = true
         list.isTextFilterEnabled = true
         list.onItemClickListener = OnItemClickListener { parent, view, pos, id ->
-            Toast.makeText(this, songs[pos]!!.title, 1).show()
+            var index = 0
+            val text = (view as TextView).text.toString()
+            for (n in names.indices) {
+                if (text == names.get(n)) {
+                    index = n
+                    break
+                }
+            }
+            Toast.makeText(this, songs[index]!!.title, 1).show()
         }
         layout.addView(list)
 
