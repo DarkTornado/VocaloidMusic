@@ -2,11 +2,12 @@ package com.darktornado.vocaloidmusic
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import kotlin.collections.ArrayList
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +25,25 @@ class MainActivity : Activity() {
         layout.addView(txt)
 
         val list = ListView(this)
-        list.adapter = ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_1, names)
+        val adapter = ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_1, names)
+        list.adapter = adapter
         list.isFastScrollEnabled = true
+        list.isTextFilterEnabled = true
         list.onItemClickListener = OnItemClickListener { parent, view, pos, id ->
             Toast.makeText(this, songs[pos]!!.title, 1).show()
         }
         layout.addView(list)
+
+        txt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                adapter.getFilter().filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                if (txt.text.toString().length == 0) adapter.getFilter().filter(null)
+            }
+        })
 
         val pad = dip2px(16)
         layout.setPadding(pad, pad, pad, pad);
